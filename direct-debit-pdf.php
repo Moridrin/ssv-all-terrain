@@ -22,7 +22,7 @@ function mp_ssv_users_direct_debit_pdf_url($url, $user)
     return $url;
 }
 
-add_filter(SSV_General::HOOK_USER_PDF_URL, 'mp_ssv_users_direct_debit_pdf_url', 10, 2);
+add_filter(SSV_General::HOOK_DIRECT_DEBIT_PDF_URL, 'mp_ssv_users_direct_debit_pdf_url', 10, 2);
 
 require_once('include/fpdf/SSV_DirectDebitPDF.php');
 
