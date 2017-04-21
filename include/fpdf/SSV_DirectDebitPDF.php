@@ -1,4 +1,8 @@
 <?php
+namespace mp_ssv_all_terrain;
+if (!defined('ABSPATH')) {
+    exit;
+}
 
 /**
  * Created by PhpStorm.
