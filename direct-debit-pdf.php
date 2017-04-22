@@ -5,6 +5,10 @@
  * Date: 10-4-17
  * Time: 10:35
  */
+use mp_ssv_all_terrain\SSV_DirectDebitPDF;
+use mp_ssv_general\SSV_General;
+use mp_ssv_general\User;
+use mp_ssv_users\SSV_Users;
 
 /**
  * @param      $url
@@ -73,6 +77,7 @@ function mp_ssv_user_pdf_content($content)
         iconv('UTF-8', 'windows-1252', $emergency_phone)
     );
     $pdf->Output('I');
+    return $content;
 }
 
 add_filter('the_content', 'mp_ssv_user_pdf_content');

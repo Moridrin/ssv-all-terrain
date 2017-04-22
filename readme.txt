@@ -28,6 +28,9 @@ The best way is to add an issue on GitHub (https://github.com/Moridrin/ssv-all-t
 The best way is to add an issue on GitHub (https://github.com/Moridrin/ssv-all-terrain/issues). But you can also send an email to J.Berkvens@Moridrin.com (the lead developer).
 
 == Changelog ==
+= 1.0.0 =
+* Namespaces added
+
 = 0.1.1 =
 * This is the first published version of the plugin.
 * Streaming Direct Debit PDF from User fields.

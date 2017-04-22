@@ -1,5 +1,7 @@
 <?php
 namespace mp_ssv_all_terrain;
+use FPDF;
+
 if (!defined('ABSPATH')) {
     exit;
 }

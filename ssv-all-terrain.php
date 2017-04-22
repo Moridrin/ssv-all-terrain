@@ -6,7 +6,7 @@
  * - Stream Direct Debit PDF from User fields
  * - Etc.
  * This plugin is fully compatible with the SSV library which can add functionality like: Users, MailChimp, Events, etc.
- * Version: 0.1.1
+ * Version: 1.0.0
  * Author: moridrin
  * Author URI: http://nl.linkedin.com/in/jberkvens/
  * License: WTFPL
