@@ -16,7 +16,7 @@ use mp_ssv_users\SSV_Users;
  *
  * @return mixed
  */
-function mp_ssv_users_direct_debit_pdf_url($url, $user)
+function mp_ssv_all_terrain_direct_debit_pdf_url($url, $user)
 {
     /** @var WP_Post[] $pages */
     $pages = SSV_Users::getPagesWithTag(SSV_Users::TAG_DIRECT_DEBIT_PDF);
@@ -30,7 +30,7 @@ add_filter(SSV_General::HOOK_DIRECT_DEBIT_PDF_URL, 'mp_ssv_users_direct_debit_pd
 
 require_once('include/fpdf/SSV_DirectDebitPDF.php');
 
-function mp_ssv_user_pdf_content($content)
+function mp_ssv_all_terrain_pdf_content($content)
 {
     if (strpos($content, '[ssv-users-direct-debit-pdf]') === false) {
         return $content;
