@@ -18,3 +18,4 @@ if (!defined('ABSPATH')) {
 
 require_once 'general/general.php';
 require_once 'direct-debit-pdf.php';
+define('SSV_ALL_TERRAIN_PATH', plugin_dir_path(__FILE__));

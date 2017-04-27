@@ -11,22 +11,45 @@ use mp_ssv_general\User;
 use mp_ssv_users\SSV_Users;
 
 /**
- * @param      $url
- * @param User $user
- *
- * @return mixed
+ * This method adds the custom Meta Boxes
  */
-function mp_ssv_all_terrain_direct_debit_pdf_url($url, $user)
+function mp_ssv_all_terrain_meta_boxes()
 {
-    /** @var WP_Post[] $pages */
-    $pages = SSV_Users::getPagesWithTag(SSV_Users::TAG_DIRECT_DEBIT_PDF);
-    if (!empty($pages)) {
-        return get_permalink($pages[0]) . '?member=' . $user->ID;
+    global $post;
+    if (!$post || !SSV_General::usersPluginActive()) {
+        return;
     }
-    return $url;
+    $containsDirectDebitTag      = strpos($post->post_content, '[ssv-users-direct-debit-pdf]') !== false;
+    if ($containsDirectDebitTag) {
+        add_meta_box('ssv_users_page_role', 'Page Role', 'ssv_users_page_role', 'page', 'side', 'default');
+    }
 }
 
-add_filter(SSV_General::HOOK_DIRECT_DEBIT_PDF_URL, 'mp_ssv_users_direct_debit_pdf_url', 10, 2);
+add_action('add_meta_boxes', 'mp_ssv_all_terrain_meta_boxes');
+
+function mp_ssv_all_terrain_custom_users_row_actions($actions, $user_object)
+{
+    /** @var WP_Post[] $pages */
+    $pages = SSV_Users::getPagesWithTag('[ssv-users-direct-debit-pdf]');
+    if (SSV_General::usersPluginActive()) {
+        foreach ($pages as $page) {
+            $pageRole = get_post_meta($page->ID, SSV_Users::PAGE_ROLE_META, true);
+            if (in_array($pageRole, $user_object->roles)) {
+                $url                         = get_permalink($page) . '?member=' . $user_object->ID;
+                $actions['direct_debit_pdf'] = '<a href="' . esc_url($url) . '" target="_blank">PDF</a>';
+            } elseif ($pageRole == -1) {
+                $url                         = get_permalink($page) . '?member=' . $user_object->ID;
+                $actions['direct_debit_pdf'] = '<a href="' . esc_url($url) . '" target="_blank">PDF</a>';
+            }
+        }
+    } else {
+        $url                         = get_permalink($pages[0]) . '?member=' . $user_object->ID;
+        $actions['direct_debit_pdf'] = '<a href="' . esc_url($url) . '" target="_blank">PDF</a>';
+    }
+    return $actions;
+}
+
+add_filter('user_row_actions', 'mp_ssv_all_terrain_custom_users_row_actions', 10, 3);
 
 require_once('include/fpdf/SSV_DirectDebitPDF.php');
 
@@ -80,4 +103,4 @@ function mp_ssv_all_terrain_pdf_content($content)
     return $content;
 }
 
-add_filter('the_content', 'mp_ssv_user_pdf_content');
+add_filter('the_content', 'mp_ssv_all_terrain_pdf_content');
