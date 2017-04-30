@@ -59,7 +59,7 @@ function mp_ssv_all_terrain_pdf_content($content)
         return $content;
     }
     $user = null;
-    if (isset($_GET['member']) && User::currentUserCan('edit_users')) {
+    if (isset($_GET['member']) && current_user_can('edit_users')) {
         $user = User::getByID($_GET['member']);
     }
     if ($user == null) {
