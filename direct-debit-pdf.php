@@ -66,7 +66,7 @@ function mp_ssv_all_terrain_pdf_content($content)
         $user = User::getCurrent();
     }
     if ($user == null) {
-        SSV_General::redirect('/login');
+        SSV_General::redirect(SSV_General::getLoginURL());
         return $content;
     }
 
