@@ -76,28 +76,28 @@ function mp_ssv_all_terrain_pdf_content($content)
     $gender          = $user->getMeta('gender');
     $iban            = $user->getMeta('iban');
     $date_of_birth   = $user->getMeta('date_of_birth');
-    $street          = $user->getMeta('street');
+    $street          = $user->getMeta('address_street');
     $email           = $user->getMeta('email');
-    $postal_code     = $user->getMeta('postal_code');
-    $city            = $user->getMeta('city');
+    $postal_code     = $user->getMeta('address_postal_code');
+    $city            = $user->getMeta('address_city');
     $phone_number    = $user->getMeta('phone_number');
     $emergency_phone = $user->getMeta('emergency_phone');
 
     $pdf = new SSV_DirectDebitPDF();
     $pdf->build(
         $_SESSION['ABSPATH'],
-        iconv('UTF-8', 'windows-1252', $first_name),
-        iconv('UTF-8', 'windows-1252', $initials),
-        iconv('UTF-8', 'windows-1252', $last_name),
-        iconv('UTF-8', 'windows-1252', $gender),
-        iconv('UTF-8', 'windows-1252', $iban),
-        iconv('UTF-8', 'windows-1252', $date_of_birth),
-        iconv('UTF-8', 'windows-1252', $street),
-        iconv('UTF-8', 'windows-1252', $email),
-        iconv('UTF-8', 'windows-1252', $postal_code),
-        iconv('UTF-8', 'windows-1252', $city),
-        iconv('UTF-8', 'windows-1252', $phone_number),
-        iconv('UTF-8', 'windows-1252', $emergency_phone)
+        $first_name,
+        $initials,
+        $last_name,
+        $gender,
+        $iban,
+        $date_of_birth,
+        $street,
+        $email,
+        $postal_code,
+        $city,
+        $phone_number,
+        $emergency_phone
     );
     $pdf->Output('I');
     return $content;
