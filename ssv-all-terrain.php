@@ -15,8 +15,9 @@
 if (!defined('ABSPATH')) {
     exit;
 }
+define('SSV_ALL_TERRAIN_PATH', plugin_dir_path(__FILE__));
+define('SSV_ALL_TERRAIN_URL', plugins_url() . '/' . plugin_basename(__DIR__));
 
 require_once 'general/general.php';
 require_once 'direct-debit-pdf.php';
 require_once 'logout-link.php';
-define('SSV_ALL_TERRAIN_PATH', plugin_dir_path(__FILE__));
