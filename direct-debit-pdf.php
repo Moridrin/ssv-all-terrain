@@ -85,7 +85,6 @@ function mp_ssv_all_terrain_pdf_content($content)
 
     $pdf = new SSV_DirectDebitPDF();
     $pdf->build(
-        $_SESSION['ABSPATH'],
         $first_name,
         $initials,
         $last_name,

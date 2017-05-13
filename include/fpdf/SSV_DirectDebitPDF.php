@@ -49,10 +49,10 @@ class SSV_DirectDebitPDF extends FPDF
         $this->tMargin     = $this->tMargin + 37 + $this->tMargin;
     }
 
-    public function build($ABSPATH, $first_name, $initials, $last_name, $gender, $iban, $date_of_birth, $street, $email, $postal_code, $city, $phone_number, $emergency_phone)
+    public function build($first_name, $initials, $last_name, $gender, $iban, $date_of_birth, $street, $email, $postal_code, $city, $phone_number, $emergency_phone)
     {
         //Start
-        $this->AddPageWithFormat($ABSPATH);
+        $this->AddPageWithFormat();
         parent::SetFont('Arial', '', 26);
         $this->Write('Agreement Direct Debit SEPA (Automatische Incasso)', true, 12);
         $this->whitespace(4);
@@ -159,16 +159,15 @@ class SSV_DirectDebitPDF extends FPDF
         return $height;
     }
 
-    public function GetCellHeight($column, $content, $args = array(), $fontStyle = '', $fontSize = 11)
+    public function GetCellHeight($column, $content, $args = array())
     {
         $align  = array_key_exists('align', $args) ? $args['align'] : self::ALIGN_LEFT;
-        $border = array_key_exists('border', $args) ? $args['border'] : false;
         $table  = array_key_exists('table', $args) ? $args['table'] : $this->fourColumns;
-        $height = $this->GetMultiCellHeight($table[$column], 6, $content, $border ? 1 : 0, $align);
+        $height = $this->GetMultiCellHeight($table[$column], 6, $content, $align);
         return $height;
     }
 
-    public function AddPageWithFormat($ABSPATH, $orientation = '', $size = '')
+    public function AddPageWithFormat($orientation = '', $size = '')
     {
         parent::AddPage($orientation, $size);
         $this->Image(SSV_ALL_TERRAIN_PATH . 'images/Document Header.png', $this->w - $this->pageRMargin - 75, $this->pageTMargin, 75, 37, 'PNG');
@@ -238,7 +237,7 @@ class SSV_DirectDebitPDF extends FPDF
         $this->x = $bak_x;
     }
 
-    function GetMultiCellHeight($w, $h, $txt, $border = null, $align = 'J')
+    function GetMultiCellHeight($w, $h, $txt, $align = 'J')
     {
         // Calculate MultiCell with automatic or explicit line breaks height
         // $border is un-used, but I kept it in the parameters to keep the call
@@ -281,6 +280,8 @@ class SSV_DirectDebitPDF extends FPDF
                 $sep = $i;
                 $ls  = $l;
                 $ns++;
+            } else {
+                $ls = null;
             }
             $l += $cw[$c];
             if ($l > $wmax) {
