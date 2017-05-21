@@ -15,9 +15,6 @@
 if (!defined('ABSPATH')) {
     exit;
 }
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
 define('SSV_ALL_TERRAIN_PATH', plugin_dir_path(__FILE__));
 define('SSV_ALL_TERRAIN_URL', plugins_url() . '/' . plugin_basename(__DIR__));
 
