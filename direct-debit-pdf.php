@@ -19,7 +19,7 @@ function mp_ssv_all_terrain_meta_boxes()
     if (!$post || !SSV_General::usersPluginActive()) {
         return;
     }
-    $containsDirectDebitTag      = strpos($post->post_content, '[ssv-users-direct-debit-pdf]') !== false;
+    $containsDirectDebitTag = strpos($post->post_content, '[ssv-users-direct-debit-pdf]') !== false;
     if ($containsDirectDebitTag) {
         add_meta_box('ssv_users_page_role', 'Page Role', 'ssv_users_page_role', 'page', 'side', 'default');
     }

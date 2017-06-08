@@ -1,5 +1,7 @@
 <?php
+
 namespace mp_ssv_all_terrain;
+
 use FPDF;
 
 if (!defined('ABSPATH')) {
@@ -171,7 +173,7 @@ class SSV_DirectDebitPDF extends FPDF
     {
         parent::AddPage($orientation, $size);
         $this->Image(SSV_ALL_TERRAIN_PATH . 'images/Document Header.png', $this->w - $this->pageRMargin - 75, $this->pageTMargin, 75, 37, 'PNG');
-        $this->Image(SSV_ALL_TERRAIN_PATH. 'images/Vertical Banner.png', $this->pageLMargin, $this->pageTMargin, 25, null, 'PNG');
+        $this->Image(SSV_ALL_TERRAIN_PATH . 'images/Vertical Banner.png', $this->pageLMargin, $this->pageTMargin, 25, null, 'PNG');
         $this->SetXY($this->lMargin, $this->pageTMargin);
 
         // <editor-fold desc="Company Information">
