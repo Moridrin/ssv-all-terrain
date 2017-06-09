@@ -12,6 +12,7 @@
  * License: WTFPL
  * License URI: http://www.wtfpl.net/txt/copying/
  */
+
 if (!defined('ABSPATH')) {
     exit;
 }
